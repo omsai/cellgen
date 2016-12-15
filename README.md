@@ -11,7 +11,7 @@ Each image varies the amount of overlap between the centromeres.
 
 The Python script depends on scipy and Python Imaging Library (PIL).
 
-It also calls a command-line program, `[fast_delaunay](https://github.com/thouis/fast-poisson-disk)`,
+It also calls a command-line program, [`fast_delaunay`](https://github.com/thouis/fast-poisson-disk),
 to generate uniform spatial distributions.
 To compile `fast_delaunay` one needs the GNU Triangulated Surface Library (libgts).
 With libgts installed, one can build `fast_delaunay` using:
