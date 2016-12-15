@@ -1,0 +1,16 @@
+diff --git a/Makefile b/Makefile
+index 23747d7..e15fdfc 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,10 @@
+-CFLAGS=`glib-config --cflags` -g -O -Wall 
++UNAME_S = $(shell uname -s)
++ifeq ($(UNAME_S),Linux)
++CFLAGS = `pkg-config --cflags glib-2.0`
++else
++CFLAGS = `glib-config --cflags`
++endif
++CFLAGS += -g -O -Wall
+ 
+ fast_delaunay:	fast_delaunay.o  weighted_tree.o voronoi.o clip.o triangle_area.o
+ 	$(CC) -o $@ $^ `gts-config --libs` -lm
