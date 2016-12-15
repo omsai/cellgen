@@ -1,0 +1,12 @@
+*.tif
+*.pyc
+*.ipynb
+
+# Bundled dependency of fast_delaunay
+fast-poisson-disk
+fast-poisson-disk-d4834e72ea47837dcdc557c4ab4014498e2870f2.tar.gz
+fast-poisson-disk-d4834e72ea47837dcdc557c4ab4014498e2870f2/
+
+# Emacs
+.\#*
+*~

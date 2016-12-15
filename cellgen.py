@@ -7,6 +7,7 @@ set such that it encloses the largest collection of centromeres."""
 import itertools
 import os
 import subprocess
+import sys
 import unittest
 
 import PIL
@@ -177,7 +178,8 @@ class CellImages(object):
                         draw.ellipse(bbox(ect), fill=128)
         return im
 
-    def save(self, format_="{frame}-ch{channel}_{channel_name}-ov{overlap}.tif"):
+    def save(self, path="./",
+             format_="{frame}-ch{channel}_{channel_name}-ov{overlap}.tif"):
         """Write all images."""
         channel_names = ["nuc", "cen", "ect"]
         for frame in range(self.frames):
@@ -185,7 +187,7 @@ class CellImages(object):
                 im_name = format_.format(frame=frame, channel=channel,
                                          channel_name=channel_name,
                                          overlap=self.im_cen_overlap[frame])
-                self.image(frame, channel).save(im_name)
+                self.image(frame, channel).save(os.path.join(path, im_name))
 
     def __repr__(self):
         return ("<{class_} {f} image frames "
@@ -246,4 +248,9 @@ def point_along_line(x, y, dist):
     return np.array([x_, y_])
 
 if __name__ == '__main__':
-    CellImages(4, 4, np.linspace(-1, 1, 5)).save()
+    PATH = sys.argv[1:]
+    if len(PATH) != 1:
+        PATH = "./"
+    else:
+        PATH = PATH[0]
+    CellImages(4, 4, np.linspace(-1, 1, 5)).save(path=PATH)
