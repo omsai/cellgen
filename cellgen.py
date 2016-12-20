@@ -150,7 +150,8 @@ class CellImages(object):
         """
         # pylint: disable=too-many-locals
         im = PIL.Image.new('L',   # pylint: disable=invalid-name
-                           (self.width_im_px, self.width_im_px))
+                           (self.width_im_px, self.width_im_px),
+                           color=1)
         draw = PIL.ImageDraw.Draw(im)
         for i, nuc in enumerate(self._pu_nuc.points
                                 * (self.width_im_px - self._padding_im_px)
